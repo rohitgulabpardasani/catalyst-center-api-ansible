@@ -1,0 +1,29 @@
+---
+- name: Simple Cisco Catalyst Center (DNA Center) Sandbox Example
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    # Cisco DNA Center Sandbox URL
+    base_url: "https://sandboxdnac.cisco.com"
+
+    # Your authentication token (replace or pass via CLI)
+    token: "PASTE_YOUR_TOKEN_HERE"
+
+  tasks:
+    - name: Get device list from Catalyst Center
+      uri:
+        url: "PASTE_YOUR_TOKEN_HERE"
+        method: GET
+        headers:
+          X-Auth-Token: "{{ token }}"
+          Content-Type: "application/json"
+        validate_certs: false
+        return_content: true
+      register: response
+
+    - name: Show raw device list
+      debug:
+        var: response.json.response
+

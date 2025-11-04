@@ -1,0 +1,33 @@
+---
+- name: Cisco Catalyst Center Sandbox - Get Custom Topology
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    # === STUDENT INPUT SECTION ===
+    # Example:
+    # topo_endpoint: "https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device"
+    topo_endpoint: "PASTE_YOUR_FULL_TOPOLOGY_URL_HERE"
+
+    # Use your token from the API token generation task
+    token: "PASTE_YOUR_TOKEN_HERE"
+
+    # === === === === === === === ===
+
+  tasks:
+    - name: Fetch topology from Cisco Catalyst Center
+      uri:
+        url: "{{ topo_endpoint }}"
+        method: GET
+        headers:
+          X-Auth-Token: "{{ token }}"
+          Content-Type: "application/json"
+        validate_certs: false
+        return_content: true
+      register: response
+
+    - name: Display topology data
+      debug:
+        msg: "{{ response.json.response | default(response.json) }}"
+
