@@ -14,7 +14,7 @@
   tasks:
     - name: Get device list from Catalyst Center
       uri:
-        url: "PASTE_YOUR_TOKEN_HERE"
+        url: "Use the base_url created above + RESOURCE URL HERE" 
         method: GET
         headers:
           X-Auth-Token: "{{ token }}"

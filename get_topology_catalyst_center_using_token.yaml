@@ -7,7 +7,7 @@
   vars:
     # === STUDENT INPUT SECTION ===
     # Example:
-    # topo_endpoint: "https://sandboxdnac.cisco.com/dna/intent/api/v1/network-device"
+    # topo_endpoint: "https://sandboxdnac.cisco.com/" ### Resource URL is missing. Needs Fix ###
     topo_endpoint: "PASTE_YOUR_FULL_TOPOLOGY_URL_HERE"
 
     # Use your token from the API token generation task

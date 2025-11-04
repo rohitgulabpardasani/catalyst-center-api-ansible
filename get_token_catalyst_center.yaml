@@ -16,7 +16,7 @@
   tasks:
     - name: Obtain authentication token
       uri:
-        url: "{{ dnac_url }}/dna/system/api/v1/auth/token"
+        url: "{{ dnac_url }}/dna/system/api/auth/token" ### This Resource URL is Incorrect. Needs Fix ###
         method: POST
         user: "{{ username }}"
         password: "{{ password }}"
