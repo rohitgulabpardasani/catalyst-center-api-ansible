@@ -1,0 +1,32 @@
+---
+- name: Cisco Catalyst Center Sandbox - Get API Token
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars:
+    # === STUDENT INPUT SECTION ===
+    # Use Cisco DNA Center Sandbox credentials:
+    # Username: devnetuser
+    # Password: Cisco123!
+    dnac_url: "https://sandboxdnac.cisco.com"
+    username: "devnetuser"
+    password: "Cisco123!"
+
+  tasks:
+    - name: Obtain authentication token
+      uri:
+        url: "{{ dnac_url }}/dna/system/api/v1/auth/token"
+        method: POST
+        user: "{{ username }}"
+        password: "{{ password }}"
+        force_basic_auth: true
+        validate_certs: false
+        return_content: true
+        status_code: 200
+      register: token_response
+
+    - name: Show the obtained token
+      debug:
+        msg: "✅ Your API Token is: {{ token_response.json.Token }}"
+
